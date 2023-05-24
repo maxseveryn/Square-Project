@@ -103,6 +103,7 @@ void Square::MyForm::ShowSquares() {
 			}
 
 			viewSquares->Rows[i]->Cells[j]->Value = sqr[i][j];
+			nextButton->Enabled = true;
 		}
 	}
 }
