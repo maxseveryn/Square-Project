@@ -8,7 +8,6 @@ using namespace System::Windows::Forms;
 const int SQR_SIZE = 5;
 int sqr[SQR_SIZE][SQR_SIZE];
 
-
 [STAThreadAttribute]
 void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
@@ -16,7 +15,6 @@ void main(array<String^>^ args) {
 	Square::MyForm form;
 	Application::Run(% form);
 }
-
 System::Void Square::MyForm::exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
 	return System::Void();
@@ -45,7 +43,16 @@ System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::
 	viewSquares->ColumnCount = SQR_SIZE;
 
 	ShowSquares();
+	nextButton->Enabled = true;
 
+	return System::Void();
+}
+
+System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (nextButton) {
+		ChangeSquareColor();
+		ShowSquares();
+	}
 	return System::Void();
 }
 
@@ -56,7 +63,7 @@ void Square::MyForm::ShowSquares() {
 
 	int squareSize = smallSize->Checked ? 20 : (mediumSize->Checked ? 50 : (largeSize->Checked ? 80 : 0));
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < SQR_SIZE; i++) {
 		viewSquares->Columns->Add(gcnew DataGridViewTextBoxColumn());
 		viewSquares->Columns[i]->Width = squareSize;
 		viewSquares->Rows->Add();
@@ -99,6 +106,27 @@ void Square::MyForm::ShowSquares() {
 			}
 
 			viewSquares->Rows[i]->Cells[j]->Value = sqr[i][j];
+		}
+	}
+}
+
+void Square::MyForm::ChangeSquareColor() {
+	const int N = (int)N_Value->Value;
+	for (int row = 0; row < SQR_SIZE; row++) {
+		for (int col = 0; col < SQR_SIZE; col++) {
+			int count = 0;
+			for (int i = row - 1; i <= row + 1; i++) {
+				for (int j = col - 1; j <= col + 1; j++) {
+					if (i >= 0 && i < SQR_SIZE && j >= 0 && j < SQR_SIZE && (i != row || j != col)) {
+						if (sqr[row][col] == sqr[i][j] - 1) {
+							count++;
+						}
+					}
+				}
+			}
+			if (count == N) {
+				sqr[row][col]++;
+			}
 		}
 	}
 }

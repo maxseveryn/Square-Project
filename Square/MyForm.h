@@ -18,9 +18,8 @@ namespace Square {
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			prevButton->Enabled = false;
+			nextButton->Enabled = false;
 		}
 
 	protected:
@@ -67,7 +66,8 @@ namespace Square {
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ nextButton;
 	private: System::Windows::Forms::Button^ prevButton;
-	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
+	private: System::Windows::Forms::NumericUpDown^ N_Value;
+
 	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip2;
 	private: System::Windows::Forms::GroupBox^ groupBox3;
 	private: System::Windows::Forms::Label^ label1;
@@ -95,16 +95,16 @@ namespace Square {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->createButton = (gcnew System::Windows::Forms::Button());
 			this->largeSize = (gcnew System::Windows::Forms::RadioButton());
 			this->smallSize = (gcnew System::Windows::Forms::RadioButton());
 			this->mediumSize = (gcnew System::Windows::Forms::RadioButton());
+			this->createButton = (gcnew System::Windows::Forms::Button());
 			this->viewSquares = (gcnew System::Windows::Forms::DataGridView());
 			this->buttonRed = (gcnew System::Windows::Forms::Button());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
@@ -118,7 +118,7 @@ namespace Square {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->nextButton = (gcnew System::Windows::Forms::Button());
 			this->prevButton = (gcnew System::Windows::Forms::Button());
-			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->N_Value = (gcnew System::Windows::Forms::NumericUpDown());
 			this->contextMenuStrip2 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -128,7 +128,7 @@ namespace Square {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->viewSquares))->BeginInit();
 			this->groupBox2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->N_Value))->BeginInit();
 			this->groupBox3->SuspendLayout();
 			this->groupBox4->SuspendLayout();
 			this->SuspendLayout();
@@ -184,18 +184,6 @@ namespace Square {
 			this->groupBox1->Text = L"Squares size:";
 			this->groupBox1->Enter += gcnew System::EventHandler(this, &MyForm::groupBox1_Enter);
 			// 
-			// createButton
-			// 
-			this->createButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->createButton->Location = System::Drawing::Point(247, 474);
-			this->createButton->Name = L"createButton";
-			this->createButton->Size = System::Drawing::Size(75, 23);
-			this->createButton->TabIndex = 5;
-			this->createButton->Text = L"Create";
-			this->createButton->UseVisualStyleBackColor = true;
-			this->createButton->Click += gcnew System::EventHandler(this, &MyForm::createButton_Click);
-			// 
 			// largeSize
 			// 
 			this->largeSize->AutoSize = true;
@@ -229,19 +217,31 @@ namespace Square {
 			this->mediumSize->Text = L"Medium";
 			this->mediumSize->UseVisualStyleBackColor = true;
 			// 
+			// createButton
+			// 
+			this->createButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->createButton->Location = System::Drawing::Point(247, 474);
+			this->createButton->Name = L"createButton";
+			this->createButton->Size = System::Drawing::Size(75, 23);
+			this->createButton->TabIndex = 5;
+			this->createButton->Text = L"Create";
+			this->createButton->UseVisualStyleBackColor = true;
+			this->createButton->Click += gcnew System::EventHandler(this, &MyForm::createButton_Click);
+			// 
 			// viewSquares
 			// 
 			this->viewSquares->BackgroundColor = System::Drawing::SystemColors::Control;
 			this->viewSquares->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
-			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle5->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->viewSquares->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle5->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle5->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->viewSquares->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this->viewSquares->Location = System::Drawing::Point(75, 58);
 			this->viewSquares->Name = L"viewSquares";
 			this->viewSquares->Size = System::Drawing::Size(588, 486);
@@ -374,6 +374,7 @@ namespace Square {
 			this->nextButton->TabIndex = 10;
 			this->nextButton->Text = L"Next";
 			this->nextButton->UseVisualStyleBackColor = true;
+			this->nextButton->Click += gcnew System::EventHandler(this, &MyForm::nextButton_Click);
 			// 
 			// prevButton
 			// 
@@ -386,12 +387,15 @@ namespace Square {
 			this->prevButton->Text = L"Previous";
 			this->prevButton->UseVisualStyleBackColor = true;
 			// 
-			// numericUpDown1
+			// N_Value
 			// 
-			this->numericUpDown1->Location = System::Drawing::Point(17, 21);
-			this->numericUpDown1->Name = L"numericUpDown1";
-			this->numericUpDown1->Size = System::Drawing::Size(54, 22);
-			this->numericUpDown1->TabIndex = 12;
+			this->N_Value->Location = System::Drawing::Point(16, 19);
+			this->N_Value->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 8, 0, 0, 0 });
+			this->N_Value->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->N_Value->Name = L"N_Value";
+			this->N_Value->Size = System::Drawing::Size(54, 22);
+			this->N_Value->TabIndex = 12;
+			this->N_Value->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
 			// contextMenuStrip2
 			// 
@@ -400,10 +404,10 @@ namespace Square {
 			// 
 			// groupBox3
 			// 
-			this->groupBox3->Controls->Add(this->numericUpDown1);
+			this->groupBox3->Controls->Add(this->N_Value);
 			this->groupBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->groupBox3->Location = System::Drawing::Point(225, 271);
+			this->groupBox3->Location = System::Drawing::Point(216, 253);
 			this->groupBox3->Name = L"groupBox3";
 			this->groupBox3->Size = System::Drawing::Size(93, 47);
 			this->groupBox3->TabIndex = 13;
@@ -426,8 +430,8 @@ namespace Square {
 			this->groupBox4->Controls->Add(this->groupBox1);
 			this->groupBox4->Controls->Add(this->createButton);
 			this->groupBox4->Controls->Add(this->groupBox2);
-			this->groupBox4->Controls->Add(this->label2);
 			this->groupBox4->Controls->Add(this->groupBox3);
+			this->groupBox4->Controls->Add(this->label2);
 			this->groupBox4->Controls->Add(this->dataGridView1);
 			this->groupBox4->Location = System::Drawing::Point(684, 47);
 			this->groupBox4->Name = L"groupBox4";
@@ -457,7 +461,7 @@ namespace Square {
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->N_Value))->EndInit();
 			this->groupBox3->ResumeLayout(false);
 			this->groupBox4->ResumeLayout(false);
 			this->groupBox4->PerformLayout();
@@ -471,6 +475,8 @@ namespace Square {
 	private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void createButton_Click(System::Object^ sender, System::EventArgs^ e);
-	   void Square::MyForm::ShowSquares();
+	private: System::Void nextButton_Click(System::Object^ sender, System::EventArgs^ e);
+	private: void Square::MyForm::ShowSquares();
+	private: void Square::MyForm::ChangeSquareColor();
 };
 }
