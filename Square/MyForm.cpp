@@ -24,13 +24,7 @@ System::Void Square::MyForm::aboutToolStripMenuItem_Click(System::Object^ sender
 	return System::Void();
 }
 
-System::Void Square::MyForm::groupBox1_Enter(System::Object^ sender, System::EventArgs^ e)
-{
-	return System::Void();
-}
-
-System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::EventArgs^ e)
-{
+System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
 	for (int i = 0; i < SQR_SIZE; i++) {
@@ -56,11 +50,14 @@ System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::Ev
 	return System::Void();
 }
 
+System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	ClearTable();
+	return System::Void();
+}
+
 void Square::MyForm::ShowSquares() {
-
-	viewSquares->Rows->Clear();
-	viewSquares->Columns->Clear();
-
+	ClearTable();
 	int squareSize = smallSize->Checked ? 20 : (mediumSize->Checked ? 50 : (largeSize->Checked ? 80 : 0));
 
 	for (int i = 0; i < SQR_SIZE; i++) {
@@ -111,6 +108,7 @@ void Square::MyForm::ShowSquares() {
 }
 
 void Square::MyForm::ChangeSquareColor() {
+	bool hasSteps = false;
 	const int N = (int)N_Value->Value;
 	for (int row = 0; row < SQR_SIZE; row++) {
 		for (int col = 0; col < SQR_SIZE; col++) {
@@ -125,8 +123,17 @@ void Square::MyForm::ChangeSquareColor() {
 				}
 			}
 			if (count == N) {
+				hasSteps = true;
 				sqr[row][col]++;
 			}
 		}
 	}
+	if (!hasSteps) {
+		MessageBox::Show("No more steps available.\nChange N-value or create another table", "Info",MessageBoxButtons::OK);
+	}
+}
+void Square::MyForm::ClearTable() {
+	viewSquares->Rows->Clear();
+	viewSquares->Columns->Clear();
+	nextButton->Enabled = false;
 }
