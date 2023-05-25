@@ -32,7 +32,6 @@ System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::
 			sqr[i][j]= std::rand() % 7;
 		}
 	}
-	
 	viewSquares->RowCount = SQR_SIZE;
 	viewSquares->ColumnCount = SQR_SIZE;
 
@@ -50,8 +49,7 @@ System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::Ev
 	return System::Void();
 }
 
-System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::EventArgs^ e)
-{
+System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	ClearTable();
 	return System::Void();
 }
