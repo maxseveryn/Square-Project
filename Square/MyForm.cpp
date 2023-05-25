@@ -7,8 +7,11 @@ using namespace System::Windows::Forms;
 
 const int SQR_SIZE = 5;
 int sqr[SQR_SIZE][SQR_SIZE];
+<<<<<<< HEAD
 int maxSelectedButtons = 5; // Максимальное количество выбранных кнопок
 int selectedButtonCount = 0; // Счетчик выбранных кнопок
+=======
+>>>>>>> b714df6336b47ff17621f6dd16e36c2de022d70c
 
 [STAThreadAttribute]
 void main(array<String^>^ args) {
@@ -17,7 +20,6 @@ void main(array<String^>^ args) {
 	Square::MyForm form;
 	Application::Run(% form);
 }
-
 System::Void Square::MyForm::exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
 	return System::Void();
@@ -27,13 +29,7 @@ System::Void Square::MyForm::aboutToolStripMenuItem_Click(System::Object^ sender
 	return System::Void();
 }
 
-System::Void Square::MyForm::groupBox1_Enter(System::Object^ sender, System::EventArgs^ e)
-{
-	return System::Void();
-}
-
-System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::EventArgs^ e)
-{
+System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
 	for (int i = 0; i < SQR_SIZE; i++) {
@@ -47,10 +43,12 @@ System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::
 	
 
 	ShowSquares();
+	nextButton->Enabled = true;
 
 	return System::Void();
 }
 
+<<<<<<< HEAD
 System::Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	Button^ clickedButton = dynamic_cast<Button^>(sender);
@@ -408,14 +406,27 @@ System::Void Square::MyForm::buttonGrey_Click(System::Object^ sender, System::Ev
 }
 
 
+=======
+System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (nextButton) {
+		ChangeSquareColor();
+		ShowSquares();
+	}
+	return System::Void();
+}
+
+System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	ClearTable();
+	return System::Void();
+}
+
+>>>>>>> b714df6336b47ff17621f6dd16e36c2de022d70c
 void Square::MyForm::ShowSquares() {
-
-	viewSquares->Rows->Clear();
-	viewSquares->Columns->Clear();
-
+	ClearTable();
 	int squareSize = smallSize->Checked ? 20 : (mediumSize->Checked ? 50 : (largeSize->Checked ? 80 : 0));
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < SQR_SIZE; i++) {
 		viewSquares->Columns->Add(gcnew DataGridViewTextBoxColumn());
 		viewSquares->Columns[i]->Width = squareSize;
 		viewSquares->Rows->Add();
@@ -462,6 +473,43 @@ void Square::MyForm::ShowSquares() {
 					viewSquares->Rows[i]->Cells[j]->Value = sqr[i][j];
 				}
 			}
+<<<<<<< HEAD
+=======
+
+			viewSquares->Rows[i]->Cells[j]->Value = sqr[i][j];
+			nextButton->Enabled = true;
+>>>>>>> b714df6336b47ff17621f6dd16e36c2de022d70c
 		}
 	}
+}
+
+void Square::MyForm::ChangeSquareColor() {
+	bool hasSteps = false;
+	const int N = (int)N_Value->Value;
+	for (int row = 0; row < SQR_SIZE; row++) {
+		for (int col = 0; col < SQR_SIZE; col++) {
+			int count = 0;
+			for (int i = row - 1; i <= row + 1; i++) {
+				for (int j = col - 1; j <= col + 1; j++) {
+					if (i >= 0 && i < SQR_SIZE && j >= 0 && j < SQR_SIZE && (i != row || j != col)) {
+						if (sqr[row][col] == sqr[i][j] - 1) {
+							count++;
+						}
+					}
+				}
+			}
+			if (count == N) {
+				hasSteps = true;
+				sqr[row][col]++;
+			}
+		}
+	}
+	if (!hasSteps) {
+		MessageBox::Show("No more steps available.\nChange N-value or create another table", "Info",MessageBoxButtons::OK);
+	}
+}
+void Square::MyForm::ClearTable() {
+	viewSquares->Rows->Clear();
+	viewSquares->Columns->Clear();
+	nextButton->Enabled = false;
 }
