@@ -1,5 +1,5 @@
 #pragma once
-
+using namespace System::Collections::Generic;
 namespace Square {
 
 	using namespace System;
@@ -18,6 +18,7 @@ namespace Square {
 		MyForm(void)
 		{
 			InitializeComponent();
+			submitButton->Enabled = false;
 			prevButton->Enabled = false;
 			nextButton->Enabled = false;
 		}
@@ -63,7 +64,8 @@ namespace Square {
 	private: System::Windows::Forms::Button^ buttonBlue;
 
 	private: System::Windows::Forms::Button^ buttonGreen;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+
+
 	private: System::Windows::Forms::Button^ nextButton;
 	private: System::Windows::Forms::Button^ prevButton;
 	private: System::Windows::Forms::NumericUpDown^ N_Value;
@@ -71,12 +73,11 @@ namespace Square {
 	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip2;
 	private: System::Windows::Forms::GroupBox^ groupBox3;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
+
 	private: System::Windows::Forms::GroupBox^ groupBox4;
 	private: System::Windows::Forms::Button^ clearButton;
-
-
-
+	private: System::Windows::Forms::GroupBox^ selectedColors;
+	private: System::Windows::Forms::Button^ submitButton;
 
 
 
@@ -96,10 +97,10 @@ namespace Square {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -119,20 +120,19 @@ namespace Square {
 			this->buttonOrange = (gcnew System::Windows::Forms::Button());
 			this->buttonBlue = (gcnew System::Windows::Forms::Button());
 			this->buttonGreen = (gcnew System::Windows::Forms::Button());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->nextButton = (gcnew System::Windows::Forms::Button());
 			this->prevButton = (gcnew System::Windows::Forms::Button());
 			this->N_Value = (gcnew System::Windows::Forms::NumericUpDown());
 			this->contextMenuStrip2 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
+			this->selectedColors = (gcnew System::Windows::Forms::GroupBox());
 			this->clearButton = (gcnew System::Windows::Forms::Button());
+			this->submitButton = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->viewSquares))->BeginInit();
 			this->groupBox2->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->N_Value))->BeginInit();
 			this->groupBox3->SuspendLayout();
 			this->groupBox4->SuspendLayout();
@@ -237,37 +237,37 @@ namespace Square {
 			// 
 			this->viewSquares->BackgroundColor = System::Drawing::SystemColors::Control;
 			this->viewSquares->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
-			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle5->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->viewSquares->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Window;
-			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle5->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle5->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->viewSquares->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle6->BackColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::ControlText;
-			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-			this->viewSquares->DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle6->ForeColor = System::Drawing::SystemColors::ControlText;
+			dataGridViewCellStyle6->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle6->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->viewSquares->DefaultCellStyle = dataGridViewCellStyle6;
 			this->viewSquares->Location = System::Drawing::Point(33, 58);
 			this->viewSquares->Name = L"viewSquares";
-			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle3->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle7->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle7->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle3->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle3->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->viewSquares->RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			this->viewSquares->RowsDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle7->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle7->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle7->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle7->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->viewSquares->RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle8->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			this->viewSquares->RowsDefaultCellStyle = dataGridViewCellStyle8;
 			this->viewSquares->Size = System::Drawing::Size(620, 486);
 			this->viewSquares->TabIndex = 6;
 			// 
@@ -281,9 +281,11 @@ namespace Square {
 			this->buttonRed->TabIndex = 7;
 			this->buttonRed->Text = L"0";
 			this->buttonRed->UseVisualStyleBackColor = false;
+			this->buttonRed->Click += gcnew System::EventHandler(this, &MyForm::buttonRed_Click);
 			// 
 			// groupBox2
 			// 
+			this->groupBox2->Controls->Add(this->submitButton);
 			this->groupBox2->Controls->Add(this->label1);
 			this->groupBox2->Controls->Add(this->buttonGrey);
 			this->groupBox2->Controls->Add(this->buttonPink);
@@ -304,7 +306,7 @@ namespace Square {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(59, 110);
+			this->label1->Location = System::Drawing::Point(8, 110);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(56, 16);
 			this->label1->TabIndex = 14;
@@ -320,6 +322,7 @@ namespace Square {
 			this->buttonGrey->TabIndex = 13;
 			this->buttonGrey->Text = L"6";
 			this->buttonGrey->UseVisualStyleBackColor = false;
+			this->buttonGrey->Click += gcnew System::EventHandler(this, &MyForm::buttonGrey_Click);
 			// 
 			// buttonPink
 			// 
@@ -332,6 +335,7 @@ namespace Square {
 			this->buttonPink->TabIndex = 12;
 			this->buttonPink->Text = L"5";
 			this->buttonPink->UseVisualStyleBackColor = false;
+			this->buttonPink->Click += gcnew System::EventHandler(this, &MyForm::buttonPink_Click);
 			// 
 			// buttonYellow
 			// 
@@ -343,6 +347,7 @@ namespace Square {
 			this->buttonYellow->TabIndex = 11;
 			this->buttonYellow->Text = L"4";
 			this->buttonYellow->UseVisualStyleBackColor = false;
+			this->buttonYellow->Click += gcnew System::EventHandler(this, &MyForm::buttonYellow_Click);
 			// 
 			// buttonOrange
 			// 
@@ -355,6 +360,7 @@ namespace Square {
 			this->buttonOrange->TabIndex = 10;
 			this->buttonOrange->Text = L"3";
 			this->buttonOrange->UseVisualStyleBackColor = false;
+			this->buttonOrange->Click += gcnew System::EventHandler(this, &MyForm::buttonOrange_Click);
 			// 
 			// buttonBlue
 			// 
@@ -366,6 +372,7 @@ namespace Square {
 			this->buttonBlue->TabIndex = 9;
 			this->buttonBlue->Text = L"2";
 			this->buttonBlue->UseVisualStyleBackColor = false;
+			this->buttonBlue->Click += gcnew System::EventHandler(this, &MyForm::buttonBlue_Click);
 			// 
 			// buttonGreen
 			// 
@@ -377,16 +384,7 @@ namespace Square {
 			this->buttonGreen->TabIndex = 8;
 			this->buttonGreen->Text = L"1";
 			this->buttonGreen->UseVisualStyleBackColor = false;
-			// 
-			// dataGridView1
-			// 
-			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::Control;
-			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(16, 388);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(225, 109);
-			this->dataGridView1->TabIndex = 9;
+			this->buttonGreen->Click += gcnew System::EventHandler(this, &MyForm::buttonGreen_Click);
 			// 
 			// nextButton
 			// 
@@ -438,30 +436,29 @@ namespace Square {
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"N-value:";
 			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(213, 359);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(116, 16);
-			this->label2->TabIndex = 14;
-			this->label2->Text = L"Selected colors";
-			// 
 			// groupBox4
 			// 
+			this->groupBox4->Controls->Add(this->selectedColors);
 			this->groupBox4->Controls->Add(this->groupBox1);
 			this->groupBox4->Controls->Add(this->createButton);
 			this->groupBox4->Controls->Add(this->groupBox2);
 			this->groupBox4->Controls->Add(this->groupBox3);
-			this->groupBox4->Controls->Add(this->label2);
-			this->groupBox4->Controls->Add(this->dataGridView1);
 			this->groupBox4->Location = System::Drawing::Point(684, 47);
 			this->groupBox4->Name = L"groupBox4";
 			this->groupBox4->Size = System::Drawing::Size(330, 507);
 			this->groupBox4->TabIndex = 5;
 			this->groupBox4->TabStop = false;
+			// 
+			// selectedColors
+			// 
+			this->selectedColors->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->selectedColors->Location = System::Drawing::Point(16, 393);
+			this->selectedColors->Name = L"selectedColors";
+			this->selectedColors->Size = System::Drawing::Size(194, 104);
+			this->selectedColors->TabIndex = 5;
+			this->selectedColors->TabStop = false;
+			this->selectedColors->Text = L"Selected colors";
 			// 
 			// clearButton
 			// 
@@ -474,6 +471,16 @@ namespace Square {
 			this->clearButton->Text = L"Clear";
 			this->clearButton->UseVisualStyleBackColor = true;
 			this->clearButton->Click += gcnew System::EventHandler(this, &MyForm::clearButton_Click);
+			// 
+			// submitButton
+			// 
+			this->submitButton->Location = System::Drawing::Point(114, 107);
+			this->submitButton->Name = L"submitButton";
+			this->submitButton->Size = System::Drawing::Size(73, 22);
+			this->submitButton->TabIndex = 13;
+			this->submitButton->Text = L"Submit";
+			this->submitButton->UseVisualStyleBackColor = true;
+			this->submitButton->Click += gcnew System::EventHandler(this, &MyForm::submitButton_Click);
 			// 
 			// MyForm
 			// 
@@ -497,11 +504,9 @@ namespace Square {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->viewSquares))->EndInit();
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->N_Value))->EndInit();
 			this->groupBox3->ResumeLayout(false);
 			this->groupBox4->ResumeLayout(false);
-			this->groupBox4->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -509,19 +514,22 @@ namespace Square {
 #pragma endregion
 	private: System::Void exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void aboutToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-
 	private: System::Void createButton_Click(System::Object^ sender, System::EventArgs^ e);
-		   System::Void buttonRed_Click(System::Object^ sender, System::EventArgs^ e);
-		   System::Void buttonGreen_Click(System::Object^ sender, System::EventArgs^ e);
-		   System::Void buttonBlue_Click(System::Object^ sender, System::EventArgs^ e);
-		   System::Void buttonOrange_Click(System::Object^ sender, System::EventArgs^ e);
-		   System::Void buttonYellow_Click(System::Object^ sender, System::EventArgs^ e);
-		   System::Void buttonPink_Click(System::Object^ sender, System::EventArgs^ e);
-		   System::Void buttonGrey_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void nextButton_Click(System::Object^ sender, System::EventArgs^ e);
 	private: void Square::MyForm::ShowSquares();
 	private: void Square::MyForm::ChangeSquareColor();
 	private: void Square::MyForm::ClearTable();
 	private: System::Void clearButton_Click(System::Object^ sender, System::EventArgs^ e);
+	private: List<Button^>^ Square::MyForm::ButtonArray();
+		   void Square::MyForm::DisableColorButtons();
+
+		   Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::EventArgs^ e);
+		   Void Square::MyForm::buttonGreen_Click(System::Object^ sender, System::EventArgs^ e);
+		   Void Square::MyForm::buttonBlue_Click(System::Object^ sender, System::EventArgs^ e);
+		   Void Square::MyForm::buttonOrange_Click(System::Object^ sender, System::EventArgs^ e);
+		   Void Square::MyForm::buttonYellow_Click(System::Object^ sender, System::EventArgs^ e);
+		   Void Square::MyForm::buttonPink_Click(System::Object^ sender, System::EventArgs^ e);
+		   Void Square::MyForm::buttonGrey_Click(System::Object^ sender, System::EventArgs^ e);
+		   Void Square::MyForm::submitButton_Click(System::Object^ sender, System::EventArgs^ e);
 	};
 }

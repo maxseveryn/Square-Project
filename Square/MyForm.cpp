@@ -1,15 +1,20 @@
 ﻿#include "MyForm.h"
 #include <cstdlib>
 #include <ctime>
+#include <vector>
+#include <list>
 
 using namespace System;
 using namespace System::Windows::Forms;
+using namespace System::Collections::Generic;
 
 const int SQR_SIZE = 5;
 int sqr[SQR_SIZE][SQR_SIZE];
 const int MAX_SELECTED_COLORS = 5;
-int* clrs[MAX_SELECTED_COLORS];
+int numButtons = 5;
 int selectedButtonCount = 0;
+static std::vector <bool> isColorButtonPressed;
+std::vector <int> clrs;
 
 [STAThreadAttribute]
 void main(array<String^>^ args) {
@@ -27,379 +32,24 @@ System::Void Square::MyForm::aboutToolStripMenuItem_Click(System::Object^ sender
 	return System::Void();
 }
 
+
 System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
 	for (int i = 0; i < SQR_SIZE; i++) {
 		for (int j = 0; j < SQR_SIZE; j++) {
-			sqr[i][j]= std::rand() % 7;
+			sqr[i][j] = std::rand() % 7;
 		}
 	}
 	viewSquares->RowCount = SQR_SIZE;
 	viewSquares->ColumnCount = SQR_SIZE;
-	
+
 
 	ShowSquares();
 	nextButton->Enabled = true;
 
 	return System::Void();
 }
-
-System::Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::EventArgs^ e) {
-	Button^ clickedButton = dynamic_cast<Button^>(sender);
-
-	// Создаем новую ячейку в dataGridView1
-	DataGridViewTextBoxCell^ cell = gcnew DataGridViewTextBoxCell();
-	cell->Value = clickedButton->Text;
-
-	// Устанавливаем стиль ячейки для отображения цвета
-	DataGridViewCellStyle^ cellStyle = gcnew DataGridViewCellStyle();
-	cellStyle->BackColor = System::Drawing::Color::Red;
-	cell->Style = cellStyle;
-
-			// Добавляем столбцы в dataGridView1
-		for (int i = 0; i < SQR_SIZE; i++) {
-			dataGridView1->Columns->Add(gcnew DataGridViewTextBoxColumn());
-		}
-	
-
-	int rowIndex = dataGridView1->Rows->Add();
-
-	// Устанавливаем ячейку в первый доступный столбец
-	int columnIndex = 0;
-	dataGridView1->Rows[rowIndex]->Cells[columnIndex] = cell;
-
-	// Деактивируем нажатую кнопку
-	clickedButton->Enabled = false;
-
-	// Проверяем количество нажатых кнопок в groupBox2
-	int clickedButtonCount = 0;
-	for (int i = 0; i < groupBox2->Controls->Count; i++)
-	{
-		if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && !groupBox2->Controls[i]->Enabled)
-			clickedButtonCount++;
-	}
-
-	// Если количество нажатых кнопок достигло 5, деактивируем остальные кнопки
-	if (clickedButtonCount == 5)
-	{
-		for (int i = 0; i < groupBox2->Controls->Count; i++)
-		{
-			if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && groupBox2->Controls[i]->Enabled)
-				groupBox2->Controls[i]->Enabled = false;
-		}
-	}
-
-	// Подгоняем размеры ячеек к размеру поля dataGridView1
-	dataGridView1->AutoResizeRows();
-	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
-}
-
-System::Void Square::MyForm::buttonGreen_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ clickedButton = dynamic_cast<Button^>(sender);
-
-	// Создаем новую ячейку в dataGridView1
-	DataGridViewTextBoxCell^ cell = gcnew DataGridViewTextBoxCell();
-	cell->Value = clickedButton->Text;
-
-	// Устанавливаем стиль ячейки для отображения цвета
-	DataGridViewCellStyle^ cellStyle = gcnew DataGridViewCellStyle();
-	cellStyle->BackColor = System::Drawing::Color::Green;
-	cell->Style = cellStyle;
-
-		// Добавляем столбцы в dataGridView1
-		for (int i = 0; i < SQR_SIZE; i++) {
-			dataGridView1->Columns->Add(gcnew DataGridViewTextBoxColumn());
-		}
-	
-	int rowIndex = dataGridView1->Rows->Add();
-
-	// Устанавливаем ячейку в первый доступный столбец
-	int columnIndex = 0;
-	dataGridView1->Rows[rowIndex]->Cells[columnIndex] = cell;
-
-	// Деактивируем нажатую кнопку
-	clickedButton->Enabled = false;
-
-	// Проверяем количество нажатых кнопок в groupBox2
-	int clickedButtonCount = 0;
-	for (int i = 0; i < groupBox2->Controls->Count; i++)
-	{
-		if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && !groupBox2->Controls[i]->Enabled)
-			clickedButtonCount++;
-	}
-
-	// Если количество нажатых кнопок достигло 5, деактивируем остальные кнопки
-	if (clickedButtonCount == 5)
-	{
-		for (int i = 0; i < groupBox2->Controls->Count; i++)
-		{
-			if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && groupBox2->Controls[i]->Enabled)
-				groupBox2->Controls[i]->Enabled = false;
-		}
-	}
-
-	// Подгоняем размеры ячеек к размеру поля dataGridView1
-	dataGridView1->AutoResizeRows();
-	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
-}
-
-System::Void Square::MyForm::buttonBlue_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ clickedButton = dynamic_cast<Button^>(sender);
-
-	// Создаем новую ячейку в dataGridView1
-	DataGridViewTextBoxCell^ cell = gcnew DataGridViewTextBoxCell();
-	cell->Value = clickedButton->Text;
-
-	// Устанавливаем стиль ячейки для отображения цвета
-	DataGridViewCellStyle^ cellStyle = gcnew DataGridViewCellStyle();
-	cellStyle->BackColor = System::Drawing::Color::Blue;
-	cell->Style = cellStyle;
-
-
-		// Добавляем столбцы в dataGridView1
-		for (int i = 0; i < SQR_SIZE; i++) {
-			dataGridView1->Columns->Add(gcnew DataGridViewTextBoxColumn());
-		}
-
-		int rowIndex = dataGridView1->Rows->Add();
-
-	// Устанавливаем ячейку в первый доступный столбец
-	int columnIndex = 0;
-	dataGridView1->Rows[rowIndex]->Cells[columnIndex] = cell;
-
-	// Деактивируем нажатую кнопку
-	clickedButton->Enabled = false;
-
-	// Проверяем количество нажатых кнопок в groupBox2
-	int clickedButtonCount = 0;
-	for (int i = 0; i < groupBox2->Controls->Count; i++)
-	{
-		if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && !groupBox2->Controls[i]->Enabled)
-			clickedButtonCount++;
-	}
-
-	// Если количество нажатых кнопок достигло 5, деактивируем остальные кнопки
-	if (clickedButtonCount == 5)
-	{
-		for (int i = 0; i < groupBox2->Controls->Count; i++)
-		{
-			if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && groupBox2->Controls[i]->Enabled)
-				groupBox2->Controls[i]->Enabled = false;
-		}
-	}
-
-	// Подгоняем размеры ячеек к размеру поля dataGridView1
-	dataGridView1->AutoResizeRows();
-	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
-}
-
-System::Void Square::MyForm::buttonOrange_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ clickedButton = dynamic_cast<Button^>(sender);
-
-	// Создаем новую ячейку в dataGridView1
-	DataGridViewTextBoxCell^ cell = gcnew DataGridViewTextBoxCell();
-	cell->Value = clickedButton->Text;
-
-	// Устанавливаем стиль ячейки для отображения цвета
-	DataGridViewCellStyle^ cellStyle = gcnew DataGridViewCellStyle();
-	cellStyle->BackColor = System::Drawing::Color::Orange;
-	cell->Style = cellStyle;
-
-
-		// Добавляем столбцы в dataGridView1
-		for (int i = 0; i < SQR_SIZE; i++) {
-			dataGridView1->Columns->Add(gcnew DataGridViewTextBoxColumn());
-		}
-
-
-	int rowIndex = dataGridView1->Rows->Add();
-
-	// Устанавливаем ячейку в первый доступный столбец
-	int columnIndex = 0;
-	dataGridView1->Rows[rowIndex]->Cells[columnIndex] = cell;
-
-	// Деактивируем нажатую кнопку
-	clickedButton->Enabled = false;
-
-	// Проверяем количество нажатых кнопок в groupBox2
-	int clickedButtonCount = 0;
-	for (int i = 0; i < groupBox2->Controls->Count; i++)
-	{
-		if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && !groupBox2->Controls[i]->Enabled)
-			clickedButtonCount++;
-	}
-
-	// Если количество нажатых кнопок достигло 5, деактивируем остальные кнопки
-	if (clickedButtonCount == 5)
-	{
-		for (int i = 0; i < groupBox2->Controls->Count; i++)
-		{
-			if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && groupBox2->Controls[i]->Enabled)
-				groupBox2->Controls[i]->Enabled = false;
-		}
-	}
-
-	// Подгоняем размеры ячеек к размеру поля dataGridView1
-	dataGridView1->AutoResizeRows();
-	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
-}
-
-System::Void Square::MyForm::buttonYellow_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ clickedButton = dynamic_cast<Button^>(sender);
-
-	// Создаем новую ячейку в dataGridView1
-	DataGridViewTextBoxCell^ cell = gcnew DataGridViewTextBoxCell();
-	cell->Value = clickedButton->Text;
-
-	// Устанавливаем стиль ячейки для отображения цвета
-	DataGridViewCellStyle^ cellStyle = gcnew DataGridViewCellStyle();
-	cellStyle->BackColor = System::Drawing::Color::Yellow;
-	cell->Style = cellStyle;
-
-		// Добавляем столбцы в dataGridView1
-		for (int i = 0; i < SQR_SIZE; i++) {
-			dataGridView1->Columns->Add(gcnew DataGridViewTextBoxColumn());
-		}
-
-	int rowIndex = dataGridView1->Rows->Add();
-
-	// Устанавливаем ячейку в первый доступный столбец
-	int columnIndex = 0;
-	dataGridView1->Rows[rowIndex]->Cells[columnIndex] = cell;
-
-	// Деактивируем нажатую кнопку
-	clickedButton->Enabled = false;
-
-	// Проверяем количество нажатых кнопок в groupBox2
-	int clickedButtonCount = 0;
-	for (int i = 0; i < groupBox2->Controls->Count; i++)
-	{
-		if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && !groupBox2->Controls[i]->Enabled)
-			clickedButtonCount++;
-	}
-
-	// Если количество нажатых кнопок достигло 5, деактивируем остальные кнопки
-	if (clickedButtonCount == 5)
-	{
-		for (int i = 0; i < groupBox2->Controls->Count; i++)
-		{
-			if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && groupBox2->Controls[i]->Enabled)
-				groupBox2->Controls[i]->Enabled = false;
-		}
-	}
-
-	// Подгоняем размеры ячеек к размеру поля dataGridView1
-	dataGridView1->AutoResizeRows();
-	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
-}
-
-System::Void Square::MyForm::buttonPink_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ clickedButton = dynamic_cast<Button^>(sender);
-
-	// Создаем новую ячейку в dataGridView1
-	DataGridViewTextBoxCell^ cell = gcnew DataGridViewTextBoxCell();
-	cell->Value = clickedButton->Text;
-
-	// Устанавливаем стиль ячейки для отображения цвета
-	DataGridViewCellStyle^ cellStyle = gcnew DataGridViewCellStyle();
-	cellStyle->BackColor = System::Drawing::Color::Pink;
-	cell->Style = cellStyle;
-
-	// Добавляем столбцы в dataGridView1
-		for (int i = 0; i < SQR_SIZE; i++) {
-			dataGridView1->Columns->Add(gcnew DataGridViewTextBoxColumn());
-		}
-
-
-	int rowIndex = dataGridView1->Rows->Add();
-
-	// Устанавливаем ячейку в первый доступный столбец
-	int columnIndex = 0;
-	dataGridView1->Rows[rowIndex]->Cells[columnIndex] = cell;
-
-	// Деактивируем нажатую кнопку
-	clickedButton->Enabled = false;
-
-	// Проверяем количество нажатых кнопок в groupBox2
-	int clickedButtonCount = 0;
-	for (int i = 0; i < groupBox2->Controls->Count; i++)
-	{
-		if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && !groupBox2->Controls[i]->Enabled)
-			clickedButtonCount++;
-	}
-
-	// Если количество нажатых кнопок достигло 5, деактивируем остальные кнопки
-	if (clickedButtonCount == 5)
-	{
-		for (int i = 0; i < groupBox2->Controls->Count; i++)
-		{
-			if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && groupBox2->Controls[i]->Enabled)
-				groupBox2->Controls[i]->Enabled = false;
-		}
-	}
-
-	// Подгоняем размеры ячеек к размеру поля dataGridView1
-	dataGridView1->AutoResizeRows();
-	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
-}
-
-System::Void Square::MyForm::buttonGrey_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ clickedButton = dynamic_cast<Button^>(sender);
-	// Создаем новую ячейку в dataGridView1
-	DataGridViewTextBoxCell^ cell = gcnew DataGridViewTextBoxCell();
-	cell->Value = clickedButton->Text;
-
-	// Устанавливаем стиль ячейки для отображения цвета
-	DataGridViewCellStyle^ cellStyle = gcnew DataGridViewCellStyle();
-	cellStyle->BackColor = System::Drawing::Color::Gray;
-	cell->Style = cellStyle;
-
-
-		// Добавляем столбцы в dataGridView1
-		for (int i = 0; i < SQR_SIZE; i++) {
-			dataGridView1->Columns->Add(gcnew DataGridViewTextBoxColumn());
-		}
-
-
-	int rowIndex = dataGridView1->Rows->Add();
-
-	// Устанавливаем ячейку в первый доступный столбец
-	int columnIndex = 0;
-	dataGridView1->Rows[rowIndex]->Cells[columnIndex] = cell;
-
-	// Деактивируем нажатую кнопку
-	clickedButton->Enabled = false;
-
-	// Проверяем количество нажатых кнопок в groupBox2
-	int clickedButtonCount = 0;
-	for (int i = 0; i < groupBox2->Controls->Count; i++)
-	{
-		if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && !groupBox2->Controls[i]->Enabled)
-			clickedButtonCount++;
-	}
-
-	// Если количество нажатых кнопок достигло 5, деактивируем остальные кнопки
-	if (clickedButtonCount == 5)
-	{
-		for (int i = 0; i < groupBox2->Controls->Count; i++)
-		{
-			if (dynamic_cast<Button^>(groupBox2->Controls[i]) != nullptr && groupBox2->Controls[i]->Enabled)
-				groupBox2->Controls[i]->Enabled = false;
-		}
-	}
-
-	// Подгоняем размеры ячеек к размеру поля dataGridView1
-	dataGridView1->AutoResizeRows();
-	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
-}
-
 System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (nextButton) {
 		ChangeSquareColor();
@@ -410,6 +60,52 @@ System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::Ev
 
 System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	ClearTable();
+	return System::Void();
+}
+System::Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonRed->Text));
+	buttonRed->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonGreen_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonGreen->Text));
+	buttonGreen->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonBlue_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonBlue->Text));
+	buttonBlue->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonOrange_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonOrange->Text));
+	buttonOrange->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonYellow_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonYellow->Text));
+	buttonYellow->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonPink_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonPink->Text));
+	buttonPink->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonGrey_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonGrey->Text));
+	buttonGrey->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::submitButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	ButtonArray();
 	return System::Void();
 }
 
@@ -470,6 +166,60 @@ void Square::MyForm::ShowSquares() {
 		}
 	}
 }
+List<Button^>^ Square::MyForm::ButtonArray() {
+	int buttonSize = 25;
+	int spacing = 10;
+
+	int groupBoxWidth = selectedColors->Width;
+	int groupBoxHeight = selectedColors->Height;
+
+	int totalWidth = numButtons * buttonSize + (numButtons - 1) * spacing;
+
+	int startX = (groupBoxWidth - totalWidth) / 2;
+
+	int y = (groupBoxHeight - buttonSize) / 2;
+
+	List<Button^>^ buttonList = gcnew List<Button^>();
+
+	for (int i = 0; i < numButtons; i++) {
+		Button^ btn = gcnew Button();
+		btn->Size = System::Drawing::Size(buttonSize, buttonSize);
+		btn->Text = clrs[i].ToString();
+
+		int x = startX + (buttonSize + spacing) * i;
+		btn->Location = System::Drawing::Point(x, y);
+
+		selectedColors->Controls->Add(btn);
+		buttonList->Add(btn);
+	}
+	for (int i = 0; i < numButtons; i++) {
+		switch (clrs[i]) {
+		case 0:
+			buttonList[i]->BackColor = Color::Red;
+			break;
+		case 1:
+			buttonList[i]->BackColor = Color::Green;
+			break;
+		case 2:
+			buttonList[i]->BackColor = Color::Blue;
+			break;
+		case 3:
+			buttonList[i]->BackColor = Color::Orange;
+			break;
+		case 4:
+			buttonList[i]->BackColor = Color::Yellow;
+			break;
+		case 5:
+			buttonList[i]->BackColor = Color::Pink;
+			break;
+		case 6:
+			buttonList[i]->BackColor = Color::Gray;
+			break;
+		}
+	}
+	return buttonList;
+}
+
 void Square::MyForm::ChangeSquareColor() {
 	bool hasSteps = false;
 	const int N = (int)N_Value->Value;
@@ -492,11 +242,23 @@ void Square::MyForm::ChangeSquareColor() {
 		}
 	}
 	if (!hasSteps) {
-		MessageBox::Show("No more steps available.\nChange N-value or create another table", "Info",MessageBoxButtons::OK);
+		MessageBox::Show("No more steps available.\nChange N-value or create another table", "Info", MessageBoxButtons::OK);
 	}
 }
 void Square::MyForm::ClearTable() {
 	viewSquares->Rows->Clear();
 	viewSquares->Columns->Clear();
 	nextButton->Enabled = false;
+}
+void Square::MyForm::DisableColorButtons() {
+	if (clrs.size() == 4) {
+		submitButton->Enabled = true;
+		buttonRed->Enabled = false;
+		buttonGreen->Enabled = false;
+		buttonBlue->Enabled = false;
+		buttonOrange->Enabled = false;
+		buttonYellow->Enabled = false;
+		buttonPink->Enabled = false;
+		buttonGrey->Enabled = false;
+	}
 }
