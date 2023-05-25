@@ -95,16 +95,16 @@ namespace Square {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->createButton = (gcnew System::Windows::Forms::Button());
 			this->largeSize = (gcnew System::Windows::Forms::RadioButton());
 			this->smallSize = (gcnew System::Windows::Forms::RadioButton());
 			this->mediumSize = (gcnew System::Windows::Forms::RadioButton());
+			this->createButton = (gcnew System::Windows::Forms::Button());
 			this->viewSquares = (gcnew System::Windows::Forms::DataGridView());
 			this->buttonRed = (gcnew System::Windows::Forms::Button());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
@@ -135,13 +135,15 @@ namespace Square {
 			// 
 			// menuStrip1
 			// 
+			this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
+			this->menuStrip1->ImageScalingSize = System::Drawing::Size(32, 32);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->aboutToolStripMenuItem,
 					this->exitToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1053, 33);
+			this->menuStrip1->Size = System::Drawing::Size(2106, 59);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -150,7 +152,7 @@ namespace Square {
 			this->aboutToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Tahoma", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
-			this->aboutToolStripMenuItem->Size = System::Drawing::Size(53, 29);
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(98, 55);
 			this->aboutToolStripMenuItem->Text = L"About";
 			this->aboutToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::aboutToolStripMenuItem_Click);
 			// 
@@ -160,12 +162,13 @@ namespace Square {
 			this->exitToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Tahoma", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(65, 29);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(123, 55);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::exitToolStripMenuItem_Click);
 			// 
 			// contextMenuStrip1
 			// 
+			this->contextMenuStrip1->ImageScalingSize = System::Drawing::Size(32, 32);
 			this->contextMenuStrip1->Name = L"contextMenuStrip1";
 			this->contextMenuStrip1->Size = System::Drawing::Size(61, 4);
 			// 
@@ -176,32 +179,23 @@ namespace Square {
 			this->groupBox1->Controls->Add(this->mediumSize);
 			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->groupBox1->Location = System::Drawing::Point(27, 19);
+			this->groupBox1->Location = System::Drawing::Point(54, 37);
+			this->groupBox1->Margin = System::Windows::Forms::Padding(6);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(256, 212);
+			this->groupBox1->Padding = System::Windows::Forms::Padding(6);
+			this->groupBox1->Size = System::Drawing::Size(512, 408);
 			this->groupBox1->TabIndex = 1;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Squares size:";
 			this->groupBox1->Enter += gcnew System::EventHandler(this, &MyForm::groupBox1_Enter);
 			// 
-			// createButton
-			// 
-			this->createButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->createButton->Location = System::Drawing::Point(247, 474);
-			this->createButton->Name = L"createButton";
-			this->createButton->Size = System::Drawing::Size(75, 23);
-			this->createButton->TabIndex = 5;
-			this->createButton->Text = L"Create";
-			this->createButton->UseVisualStyleBackColor = true;
-			this->createButton->Click += gcnew System::EventHandler(this, &MyForm::createButton_Click);
-			// 
 			// largeSize
 			// 
 			this->largeSize->AutoSize = true;
-			this->largeSize->Location = System::Drawing::Point(39, 116);
+			this->largeSize->Location = System::Drawing::Point(78, 223);
+			this->largeSize->Margin = System::Windows::Forms::Padding(6);
 			this->largeSize->Name = L"largeSize";
-			this->largeSize->Size = System::Drawing::Size(65, 20);
+			this->largeSize->Size = System::Drawing::Size(114, 34);
 			this->largeSize->TabIndex = 4;
 			this->largeSize->TabStop = true;
 			this->largeSize->Text = L"Large";
@@ -210,9 +204,10 @@ namespace Square {
 			// smallSize
 			// 
 			this->smallSize->AutoSize = true;
-			this->smallSize->Location = System::Drawing::Point(39, 43);
+			this->smallSize->Location = System::Drawing::Point(78, 83);
+			this->smallSize->Margin = System::Windows::Forms::Padding(6);
 			this->smallSize->Name = L"smallSize";
-			this->smallSize->Size = System::Drawing::Size(64, 20);
+			this->smallSize->Size = System::Drawing::Size(114, 34);
 			this->smallSize->TabIndex = 2;
 			this->smallSize->TabStop = true;
 			this->smallSize->Text = L"Small";
@@ -221,42 +216,61 @@ namespace Square {
 			// mediumSize
 			// 
 			this->mediumSize->AutoSize = true;
-			this->mediumSize->Location = System::Drawing::Point(39, 79);
+			this->mediumSize->Location = System::Drawing::Point(78, 152);
+			this->mediumSize->Margin = System::Windows::Forms::Padding(6);
 			this->mediumSize->Name = L"mediumSize";
-			this->mediumSize->Size = System::Drawing::Size(79, 20);
+			this->mediumSize->Size = System::Drawing::Size(142, 34);
 			this->mediumSize->TabIndex = 3;
 			this->mediumSize->TabStop = true;
 			this->mediumSize->Text = L"Medium";
 			this->mediumSize->UseVisualStyleBackColor = true;
 			// 
+			// createButton
+			// 
+			this->createButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->createButton->Location = System::Drawing::Point(494, 912);
+			this->createButton->Margin = System::Windows::Forms::Padding(6);
+			this->createButton->Name = L"createButton";
+			this->createButton->Size = System::Drawing::Size(150, 44);
+			this->createButton->TabIndex = 5;
+			this->createButton->Text = L"Create";
+			this->createButton->UseVisualStyleBackColor = true;
+			this->createButton->Click += gcnew System::EventHandler(this, &MyForm::createButton_Click);
+			// 
 			// viewSquares
 			// 
 			this->viewSquares->BackgroundColor = System::Drawing::SystemColors::Control;
 			this->viewSquares->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
-			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->viewSquares->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-			this->viewSquares->Location = System::Drawing::Point(75, 58);
+			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->viewSquares->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this->viewSquares->ColumnHeadersHeight = 46;
+			this->viewSquares->Location = System::Drawing::Point(150, 112);
+			this->viewSquares->Margin = System::Windows::Forms::Padding(6);
 			this->viewSquares->Name = L"viewSquares";
-			this->viewSquares->Size = System::Drawing::Size(588, 486);
+			this->viewSquares->RowHeadersWidth = 82;
+			this->viewSquares->Size = System::Drawing::Size(1176, 935);
 			this->viewSquares->TabIndex = 6;
 			// 
 			// buttonRed
 			// 
 			this->buttonRed->BackColor = System::Drawing::Color::Red;
 			this->buttonRed->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->buttonRed->Location = System::Drawing::Point(6, 34);
+			this->buttonRed->Location = System::Drawing::Point(12, 65);
+			this->buttonRed->Margin = System::Windows::Forms::Padding(6);
 			this->buttonRed->Name = L"buttonRed";
-			this->buttonRed->Size = System::Drawing::Size(30, 29);
+			this->buttonRed->Size = System::Drawing::Size(60, 56);
 			this->buttonRed->TabIndex = 7;
 			this->buttonRed->Text = L"0";
 			this->buttonRed->UseVisualStyleBackColor = false;
+			this->buttonRed->Click += gcnew System::EventHandler(this, &MyForm::buttonRed_Click);
 			// 
 			// groupBox2
 			// 
@@ -270,9 +284,11 @@ namespace Square {
 			this->groupBox2->Controls->Add(this->buttonRed);
 			this->groupBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->groupBox2->Location = System::Drawing::Point(16, 237);
+			this->groupBox2->Location = System::Drawing::Point(32, 456);
+			this->groupBox2->Margin = System::Windows::Forms::Padding(6);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(194, 138);
+			this->groupBox2->Padding = System::Windows::Forms::Padding(6);
+			this->groupBox2->Size = System::Drawing::Size(388, 265);
 			this->groupBox2->TabIndex = 8;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Available colors:";
@@ -280,9 +296,10 @@ namespace Square {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(59, 110);
+			this->label1->Location = System::Drawing::Point(118, 212);
+			this->label1->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(56, 16);
+			this->label1->Size = System::Drawing::Size(105, 30);
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"Max - 5";
 			// 
@@ -290,87 +307,102 @@ namespace Square {
 			// 
 			this->buttonGrey->BackColor = System::Drawing::Color::Silver;
 			this->buttonGrey->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->buttonGrey->Location = System::Drawing::Point(114, 69);
+			this->buttonGrey->Location = System::Drawing::Point(228, 133);
+			this->buttonGrey->Margin = System::Windows::Forms::Padding(6);
 			this->buttonGrey->Name = L"buttonGrey";
-			this->buttonGrey->Size = System::Drawing::Size(30, 29);
+			this->buttonGrey->Size = System::Drawing::Size(60, 56);
 			this->buttonGrey->TabIndex = 13;
 			this->buttonGrey->Text = L"6";
 			this->buttonGrey->UseVisualStyleBackColor = false;
+			this->buttonGrey->Click += gcnew System::EventHandler(this, &MyForm::buttonGrey_Click);
 			// 
 			// buttonPink
 			// 
 			this->buttonPink->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->buttonPink->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->buttonPink->Location = System::Drawing::Point(42, 69);
+			this->buttonPink->Location = System::Drawing::Point(84, 133);
+			this->buttonPink->Margin = System::Windows::Forms::Padding(6);
 			this->buttonPink->Name = L"buttonPink";
-			this->buttonPink->Size = System::Drawing::Size(30, 29);
+			this->buttonPink->Size = System::Drawing::Size(60, 56);
 			this->buttonPink->TabIndex = 12;
 			this->buttonPink->Text = L"5";
 			this->buttonPink->UseVisualStyleBackColor = false;
+			this->buttonPink->Click += gcnew System::EventHandler(this, &MyForm::buttonPink_Click);
 			// 
 			// buttonYellow
 			// 
 			this->buttonYellow->BackColor = System::Drawing::Color::Yellow;
 			this->buttonYellow->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->buttonYellow->Location = System::Drawing::Point(150, 34);
+			this->buttonYellow->Location = System::Drawing::Point(300, 65);
+			this->buttonYellow->Margin = System::Windows::Forms::Padding(6);
 			this->buttonYellow->Name = L"buttonYellow";
-			this->buttonYellow->Size = System::Drawing::Size(30, 29);
+			this->buttonYellow->Size = System::Drawing::Size(60, 56);
 			this->buttonYellow->TabIndex = 11;
 			this->buttonYellow->Text = L"4";
 			this->buttonYellow->UseVisualStyleBackColor = false;
+			this->buttonYellow->Click += gcnew System::EventHandler(this, &MyForm::buttonYellow_Click);
 			// 
 			// buttonOrange
 			// 
 			this->buttonOrange->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->buttonOrange->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->buttonOrange->Location = System::Drawing::Point(114, 34);
+			this->buttonOrange->Location = System::Drawing::Point(228, 65);
+			this->buttonOrange->Margin = System::Windows::Forms::Padding(6);
 			this->buttonOrange->Name = L"buttonOrange";
-			this->buttonOrange->Size = System::Drawing::Size(30, 29);
+			this->buttonOrange->Size = System::Drawing::Size(60, 56);
 			this->buttonOrange->TabIndex = 10;
 			this->buttonOrange->Text = L"3";
 			this->buttonOrange->UseVisualStyleBackColor = false;
+			this->buttonOrange->Click += gcnew System::EventHandler(this, &MyForm::buttonOrange_Click);
 			// 
 			// buttonBlue
 			// 
 			this->buttonBlue->BackColor = System::Drawing::Color::Blue;
 			this->buttonBlue->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->buttonBlue->Location = System::Drawing::Point(78, 34);
+			this->buttonBlue->Location = System::Drawing::Point(156, 65);
+			this->buttonBlue->Margin = System::Windows::Forms::Padding(6);
 			this->buttonBlue->Name = L"buttonBlue";
-			this->buttonBlue->Size = System::Drawing::Size(30, 29);
+			this->buttonBlue->Size = System::Drawing::Size(60, 56);
 			this->buttonBlue->TabIndex = 9;
 			this->buttonBlue->Text = L"2";
 			this->buttonBlue->UseVisualStyleBackColor = false;
+			this->buttonBlue->Click += gcnew System::EventHandler(this, &MyForm::buttonBlue_Click);
 			// 
 			// buttonGreen
 			// 
 			this->buttonGreen->BackColor = System::Drawing::Color::Green;
 			this->buttonGreen->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->buttonGreen->Location = System::Drawing::Point(42, 34);
+			this->buttonGreen->Location = System::Drawing::Point(84, 65);
+			this->buttonGreen->Margin = System::Windows::Forms::Padding(6);
 			this->buttonGreen->Name = L"buttonGreen";
-			this->buttonGreen->Size = System::Drawing::Size(30, 29);
+			this->buttonGreen->Size = System::Drawing::Size(60, 56);
 			this->buttonGreen->TabIndex = 8;
 			this->buttonGreen->Text = L"1";
 			this->buttonGreen->UseVisualStyleBackColor = false;
+			this->buttonGreen->Click += gcnew System::EventHandler(this, &MyForm::buttonGreen_Click);
 			// 
 			// dataGridView1
 			// 
 			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::Control;
 			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(16, 388);
+			this->dataGridView1->Location = System::Drawing::Point(32, 746);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(6);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(225, 109);
+			this->dataGridView1->RowHeadersWidth = 82;
+			this->dataGridView1->Size = System::Drawing::Size(450, 210);
 			this->dataGridView1->TabIndex = 9;
 			// 
 			// nextButton
 			// 
 			this->nextButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->nextButton->Location = System::Drawing::Point(342, 550);
+			this->nextButton->Location = System::Drawing::Point(684, 1058);
+			this->nextButton->Margin = System::Windows::Forms::Padding(6);
 			this->nextButton->Name = L"nextButton";
-			this->nextButton->Size = System::Drawing::Size(129, 42);
+			this->nextButton->Size = System::Drawing::Size(258, 81);
 			this->nextButton->TabIndex = 10;
 			this->nextButton->Text = L"Next";
 			this->nextButton->UseVisualStyleBackColor = true;
@@ -379,22 +411,27 @@ namespace Square {
 			// 
 			this->prevButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->prevButton->Location = System::Drawing::Point(186, 550);
+			this->prevButton->Location = System::Drawing::Point(372, 1058);
+			this->prevButton->Margin = System::Windows::Forms::Padding(6);
 			this->prevButton->Name = L"prevButton";
-			this->prevButton->Size = System::Drawing::Size(129, 42);
+			this->prevButton->Size = System::Drawing::Size(258, 81);
 			this->prevButton->TabIndex = 11;
 			this->prevButton->Text = L"Previous";
 			this->prevButton->UseVisualStyleBackColor = true;
 			// 
 			// numericUpDown1
 			// 
-			this->numericUpDown1->Location = System::Drawing::Point(17, 21);
+			this->numericUpDown1->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
+			this->numericUpDown1->Location = System::Drawing::Point(34, 40);
+			this->numericUpDown1->Margin = System::Windows::Forms::Padding(6);
+			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numericUpDown1->Name = L"numericUpDown1";
-			this->numericUpDown1->Size = System::Drawing::Size(54, 22);
+			this->numericUpDown1->Size = System::Drawing::Size(108, 37);
 			this->numericUpDown1->TabIndex = 12;
 			// 
 			// contextMenuStrip2
 			// 
+			this->contextMenuStrip2->ImageScalingSize = System::Drawing::Size(32, 32);
 			this->contextMenuStrip2->Name = L"contextMenuStrip2";
 			this->contextMenuStrip2->Size = System::Drawing::Size(61, 4);
 			// 
@@ -403,9 +440,11 @@ namespace Square {
 			this->groupBox3->Controls->Add(this->numericUpDown1);
 			this->groupBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->groupBox3->Location = System::Drawing::Point(225, 271);
+			this->groupBox3->Location = System::Drawing::Point(450, 521);
+			this->groupBox3->Margin = System::Windows::Forms::Padding(6);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(93, 47);
+			this->groupBox3->Padding = System::Windows::Forms::Padding(6);
+			this->groupBox3->Size = System::Drawing::Size(186, 90);
 			this->groupBox3->TabIndex = 13;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"N-value:";
@@ -415,9 +454,10 @@ namespace Square {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(15, 388);
+			this->label2->Location = System::Drawing::Point(30, 746);
+			this->label2->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(116, 16);
+			this->label2->Size = System::Drawing::Size(203, 30);
 			this->label2->TabIndex = 14;
 			this->label2->Text = L"Selected colors";
 			// 
@@ -429,23 +469,26 @@ namespace Square {
 			this->groupBox4->Controls->Add(this->label2);
 			this->groupBox4->Controls->Add(this->groupBox3);
 			this->groupBox4->Controls->Add(this->dataGridView1);
-			this->groupBox4->Location = System::Drawing::Point(684, 47);
+			this->groupBox4->Location = System::Drawing::Point(1368, 90);
+			this->groupBox4->Margin = System::Windows::Forms::Padding(6);
 			this->groupBox4->Name = L"groupBox4";
-			this->groupBox4->Size = System::Drawing::Size(330, 507);
+			this->groupBox4->Padding = System::Windows::Forms::Padding(6);
+			this->groupBox4->Size = System::Drawing::Size(660, 975);
 			this->groupBox4->TabIndex = 5;
 			this->groupBox4->TabStop = false;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1053, 600);
+			this->ClientSize = System::Drawing::Size(2106, 1154);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->prevButton);
 			this->Controls->Add(this->nextButton);
 			this->Controls->Add(this->viewSquares);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
+			this->Margin = System::Windows::Forms::Padding(6);
 			this->MaximizeBox = false;
 			this->Name = L"MyForm";
 			this->Text = L"Square";
@@ -472,5 +515,12 @@ namespace Square {
 
 	private: System::Void createButton_Click(System::Object^ sender, System::EventArgs^ e);
 	   void Square::MyForm::ShowSquares();
+	private: System::Void buttonRed_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonGreen_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonBlue_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonOrange_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonYellow_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonPink_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonGrey_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
