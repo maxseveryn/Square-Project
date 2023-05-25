@@ -7,11 +7,9 @@ using namespace System::Windows::Forms;
 
 const int SQR_SIZE = 5;
 int sqr[SQR_SIZE][SQR_SIZE];
-<<<<<<< HEAD
-int maxSelectedButtons = 5; // Максимальное количество выбранных кнопок
-int selectedButtonCount = 0; // Счетчик выбранных кнопок
-=======
->>>>>>> b714df6336b47ff17621f6dd16e36c2de022d70c
+const int MAX_SELECTED_COLORS = 5;
+int* clrs[MAX_SELECTED_COLORS];
+int selectedButtonCount = 0;
 
 [STAThreadAttribute]
 void main(array<String^>^ args) {
@@ -47,9 +45,7 @@ System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::
 	return System::Void();
 }
 
-<<<<<<< HEAD
-System::Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::EventArgs^ e)
-{
+System::Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::EventArgs^ e) {
 	Button^ clickedButton = dynamic_cast<Button^>(sender);
 
 	// Создаем новую ячейку в dataGridView1
@@ -98,6 +94,7 @@ System::Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::Eve
 	dataGridView1->AutoResizeRows();
 	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
 }
+
 System::Void Square::MyForm::buttonGreen_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	Button^ clickedButton = dynamic_cast<Button^>(sender);
@@ -355,7 +352,6 @@ System::Void Square::MyForm::buttonPink_Click(System::Object^ sender, System::Ev
 System::Void Square::MyForm::buttonGrey_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	Button^ clickedButton = dynamic_cast<Button^>(sender);
-
 	// Создаем новую ячейку в dataGridView1
 	DataGridViewTextBoxCell^ cell = gcnew DataGridViewTextBoxCell();
 	cell->Value = clickedButton->Text;
@@ -404,8 +400,6 @@ System::Void Square::MyForm::buttonGrey_Click(System::Object^ sender, System::Ev
 	dataGridView1->AutoResizeColumns(DataGridViewAutoSizeColumnsMode::AllCells);
 }
 
-
-=======
 System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (nextButton) {
 		ChangeSquareColor();
@@ -419,7 +413,6 @@ System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::E
 	return System::Void();
 }
 
->>>>>>> b714df6336b47ff17621f6dd16e36c2de022d70c
 void Square::MyForm::ShowSquares() {
 	ClearTable();
 	int squareSize = smallSize->Checked ? 20 : (mediumSize->Checked ? 50 : (largeSize->Checked ? 80 : 0));
@@ -471,16 +464,12 @@ void Square::MyForm::ShowSquares() {
 					viewSquares->Rows[i]->Cells[j]->Value = sqr[i][j];
 				}
 			}
-<<<<<<< HEAD
-=======
 
 			viewSquares->Rows[i]->Cells[j]->Value = sqr[i][j];
 			nextButton->Enabled = true;
->>>>>>> b714df6336b47ff17621f6dd16e36c2de022d70c
 		}
 	}
 }
-
 void Square::MyForm::ChangeSquareColor() {
 	bool hasSteps = false;
 	const int N = (int)N_Value->Value;
