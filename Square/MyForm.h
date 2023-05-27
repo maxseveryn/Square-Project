@@ -362,9 +362,9 @@ namespace Square {
 			// 
 			this->clearButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->clearButton->Location = System::Drawing::Point(566, 550);
+			this->clearButton->Location = System::Drawing::Point(554, 550);
 			this->clearButton->Name = L"clearButton";
-			this->clearButton->Size = System::Drawing::Size(87, 38);
+			this->clearButton->Size = System::Drawing::Size(99, 38);
 			this->clearButton->TabIndex = 12;
 			this->clearButton->Text = L"Clear";
 			this->clearButton->UseVisualStyleBackColor = true;
