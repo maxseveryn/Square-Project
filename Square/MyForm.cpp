@@ -22,10 +22,9 @@ void main(array<String^>^ args) {
 
 System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
 	for (int i = 0; i < SQR_SIZE; i++) {
 		for (int j = 0; j < SQR_SIZE; j++) {
-			sqr[i][j] = std::rand() % 7;
+			sqr[i][j] = sqr[i][j] = clrs[std::rand() % clrs.size()];
 		}
 	}
 	viewSquares->RowCount = SQR_SIZE;

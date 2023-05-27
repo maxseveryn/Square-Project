@@ -1,4 +1,4 @@
 ﻿  MyForm.cpp
 C:\Users\sever\Desktop\study\Square-Project\Square\MyForm.cpp(16,33): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
-  Functions.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Square.vcxproj -> C:\Users\sever\Desktop\study\Square-Project\x64\Debug\Square.exe
