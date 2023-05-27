@@ -10,3 +10,7 @@ C:\Users\lika9\Square-Project\Square\x64\Debug\Square.vcxproj.AssemblyReference.
 C:\Users\lika9\Square-Project\Square\x64\Debug\Square.vcxproj.SuggestedBindingRedirects.cache
 C:\Users\lika9\Square-Project\Square\x64\Debug\Square.MyForm.resources
 C:\Users\lika9\Square-Project\Square\x64\Debug\Square.vcxproj.GenerateResource.cache
+C:\Users\sever\Desktop\study\Square-Project\Square\x64\Debug\Square.vcxproj.AssemblyReference.cache
+C:\Users\sever\Desktop\study\Square-Project\Square\x64\Debug\Square.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\sever\Desktop\study\Square-Project\Square\x64\Debug\Square.MyForm.resources
+C:\Users\sever\Desktop\study\Square-Project\Square\x64\Debug\Square.vcxproj.GenerateResource.cache

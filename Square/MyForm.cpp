@@ -1,5 +1,4 @@
 ﻿#include "MyForm.h"
-#include <cstdlib>
 #include <ctime>
 #include <vector>
 #include <list>
@@ -11,9 +10,6 @@ using namespace System::Collections::Generic;
 const int SQR_SIZE = 5;
 int sqr[SQR_SIZE][SQR_SIZE];
 const int MAX_SELECTED_COLORS = 5;
-int numButtons = 5;
-int selectedButtonCount = 0;
-static std::vector <bool> isColorButtonPressed;
 std::vector <int> clrs;
 
 [STAThreadAttribute]
@@ -23,15 +19,6 @@ void main(array<String^>^ args) {
 	Square::MyForm form;
 	Application::Run(% form);
 }
-System::Void Square::MyForm::exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	Application::Exit();
-	return System::Void();
-}
-System::Void Square::MyForm::aboutToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	MessageBox::Show("Group project for Soft Skills discipline!", "NUZP");
-	return System::Void();
-}
-
 
 System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -50,65 +37,6 @@ System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::
 
 	return System::Void();
 }
-System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (nextButton) {
-		ChangeSquareColor();
-		ShowSquares();
-	}
-	return System::Void();
-}
-
-System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	ClearTable();
-	return System::Void();
-}
-System::Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::EventArgs^ e) {
-	DisableColorButtons();
-	clrs.push_back(Int32::Parse(buttonRed->Text));
-	buttonRed->Enabled = false;
-	return System::Void();
-}
-System::Void Square::MyForm::buttonGreen_Click(System::Object^ sender, System::EventArgs^ e) {
-	DisableColorButtons();
-	clrs.push_back(Int32::Parse(buttonGreen->Text));
-	buttonGreen->Enabled = false;
-	return System::Void();
-}
-System::Void Square::MyForm::buttonBlue_Click(System::Object^ sender, System::EventArgs^ e) {
-	DisableColorButtons();
-	clrs.push_back(Int32::Parse(buttonBlue->Text));
-	buttonBlue->Enabled = false;
-	return System::Void();
-}
-System::Void Square::MyForm::buttonOrange_Click(System::Object^ sender, System::EventArgs^ e) {
-	DisableColorButtons();
-	clrs.push_back(Int32::Parse(buttonOrange->Text));
-	buttonOrange->Enabled = false;
-	return System::Void();
-}
-System::Void Square::MyForm::buttonYellow_Click(System::Object^ sender, System::EventArgs^ e) {
-	DisableColorButtons();
-	clrs.push_back(Int32::Parse(buttonYellow->Text));
-	buttonYellow->Enabled = false;
-	return System::Void();
-}
-System::Void Square::MyForm::buttonPink_Click(System::Object^ sender, System::EventArgs^ e) {
-	DisableColorButtons();
-	clrs.push_back(Int32::Parse(buttonPink->Text));
-	buttonPink->Enabled = false;
-	return System::Void();
-}
-System::Void Square::MyForm::buttonGrey_Click(System::Object^ sender, System::EventArgs^ e) {
-	DisableColorButtons();
-	clrs.push_back(Int32::Parse(buttonGrey->Text));
-	buttonGrey->Enabled = false;
-	return System::Void();
-}
-System::Void Square::MyForm::submitButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	ButtonArray();
-	return System::Void();
-}
-
 void Square::MyForm::ShowSquares() {
 	ClearTable();
 	int squareSize = smallSize->Checked ? 20 : (mediumSize->Checked ? 50 : (largeSize->Checked ? 80 : 0));
@@ -166,58 +94,13 @@ void Square::MyForm::ShowSquares() {
 		}
 	}
 }
-List<Button^>^ Square::MyForm::ButtonArray() {
-	int buttonSize = 25;
-	int spacing = 10;
 
-	int groupBoxWidth = selectedColors->Width;
-	int groupBoxHeight = selectedColors->Height;
-
-	int totalWidth = numButtons * buttonSize + (numButtons - 1) * spacing;
-
-	int startX = (groupBoxWidth - totalWidth) / 2;
-
-	int y = (groupBoxHeight - buttonSize) / 2;
-
-	List<Button^>^ buttonList = gcnew List<Button^>();
-
-	for (int i = 0; i < numButtons; i++) {
-		Button^ btn = gcnew Button();
-		btn->Size = System::Drawing::Size(buttonSize, buttonSize);
-		btn->Text = clrs[i].ToString();
-
-		int x = startX + (buttonSize + spacing) * i;
-		btn->Location = System::Drawing::Point(x, y);
-
-		selectedColors->Controls->Add(btn);
-		buttonList->Add(btn);
+System::Void Square::MyForm::nextButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (nextButton) {
+		ChangeSquareColor();
+		ShowSquares();
 	}
-	for (int i = 0; i < numButtons; i++) {
-		switch (clrs[i]) {
-		case 0:
-			buttonList[i]->BackColor = Color::Red;
-			break;
-		case 1:
-			buttonList[i]->BackColor = Color::Green;
-			break;
-		case 2:
-			buttonList[i]->BackColor = Color::Blue;
-			break;
-		case 3:
-			buttonList[i]->BackColor = Color::Orange;
-			break;
-		case 4:
-			buttonList[i]->BackColor = Color::Yellow;
-			break;
-		case 5:
-			buttonList[i]->BackColor = Color::Pink;
-			break;
-		case 6:
-			buttonList[i]->BackColor = Color::Gray;
-			break;
-		}
-	}
-	return buttonList;
+	return System::Void();
 }
 
 void Square::MyForm::ChangeSquareColor() {
@@ -245,20 +128,150 @@ void Square::MyForm::ChangeSquareColor() {
 		MessageBox::Show("No more steps available.\nChange N-value or create another table", "Info", MessageBoxButtons::OK);
 	}
 }
+
+System::Void Square::MyForm::buttonRed_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonRed->Text));
+	buttonRed->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonGreen_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonGreen->Text));
+	buttonGreen->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonBlue_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonBlue->Text));
+	buttonBlue->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonOrange_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonOrange->Text));
+	buttonOrange->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonYellow_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonYellow->Text));
+	buttonYellow->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonPink_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonPink->Text));
+	buttonPink->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::buttonGrey_Click(System::Object^ sender, System::EventArgs^ e) {
+	DisableColorButtons();
+	clrs.push_back(Int32::Parse(buttonGrey->Text));
+	buttonGrey->Enabled = false;
+	return System::Void();
+}
+System::Void Square::MyForm::submitButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	ButtonArray();
+	return System::Void();
+}
+
+List<Button^>^ Square::MyForm::ButtonArray() {
+	int buttonSize = 25;
+	int spacing = 10;
+
+	int groupBoxWidth = Colors_AB_GroupBox->Width;
+	int groupBoxHeight = Colors_AB_GroupBox->Height;
+
+	int totalWidth = MAX_SELECTED_COLORS * buttonSize + (MAX_SELECTED_COLORS - 1) * spacing;
+
+	int startX = (groupBoxWidth - totalWidth) / 2;
+
+	int y = (groupBoxHeight - buttonSize) / 2;
+
+	List<Button^>^ buttonList = gcnew List<Button^>();
+
+	for (int i = 0; i < MAX_SELECTED_COLORS; i++) {
+		Button^ btn = gcnew Button();
+		btn->Size = System::Drawing::Size(buttonSize, buttonSize);
+		btn->Text = clrs[i].ToString();
+
+		int x = startX + (buttonSize + spacing) * i;
+		btn->Location = System::Drawing::Point(x, y);
+
+		Colors_AB_GroupBox->Controls->Add(btn);
+		buttonList->Add(btn);
+	}
+	for (int i = 0; i < MAX_SELECTED_COLORS; i++) {
+		switch (clrs[i]) {
+		case 0:
+			buttonList[i]->BackColor = Color::Red;
+			break;
+		case 1:
+			buttonList[i]->BackColor = Color::Green;
+			break;
+		case 2:
+			buttonList[i]->BackColor = Color::Blue;
+			break;
+		case 3:
+			buttonList[i]->BackColor = Color::Orange;
+			break;
+		case 4:
+			buttonList[i]->BackColor = Color::Yellow;
+			break;
+		case 5:
+			buttonList[i]->BackColor = Color::Pink;
+			break;
+		case 6:
+			buttonList[i]->BackColor = Color::Gray;
+			break;
+		default:
+			buttonList[i]->BackColor = Color::White;
+		}
+	}
+	return buttonList;
+}
+
+void Square::MyForm::DisableColorButtons() {
+	if (clrs.size() == 4) {
+		submitButton->Enabled = true;
+		array<Button^>^ buttons = gcnew array<Button^> {
+			buttonRed, buttonGreen, buttonBlue, buttonOrange, buttonYellow, buttonPink, buttonGrey
+		};
+		for each (Button ^ button in buttons) {
+			button->Enabled = false;
+		}
+	}
+}
+void Square::MyForm::EnableColorButtons() {
+	clrs.clear();
+	submitButton->Enabled = false;
+	array<Button^>^ buttons = gcnew array<Button^> {
+		buttonRed, buttonGreen, buttonBlue, buttonOrange, buttonYellow, buttonPink, buttonGrey
+	};
+	for each (Button ^ button in buttons) {
+		button->Enabled = true;
+	}
+}
+
+System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	ClearTable();
+	ClearSelectedButtons(Colors_AB_GroupBox);
+	EnableColorButtons();
+	return System::Void();
+}
 void Square::MyForm::ClearTable() {
 	viewSquares->Rows->Clear();
 	viewSquares->Columns->Clear();
 	nextButton->Enabled = false;
+	EnableColorButtons();
 }
-void Square::MyForm::DisableColorButtons() {
-	if (clrs.size() == 4) {
-		submitButton->Enabled = true;
-		buttonRed->Enabled = false;
-		buttonGreen->Enabled = false;
-		buttonBlue->Enabled = false;
-		buttonOrange->Enabled = false;
-		buttonYellow->Enabled = false;
-		buttonPink->Enabled = false;
-		buttonGrey->Enabled = false;
+void Square::MyForm::ClearSelectedButtons(GroupBox^ groupBox) {
+	while (Colors_AB_GroupBox->Controls->Count > 0)
+	{
+		Control^ control = Colors_AB_GroupBox->Controls[0];
+		Colors_AB_GroupBox->Controls->Remove(control);
+		delete control;
 	}
 }
+
