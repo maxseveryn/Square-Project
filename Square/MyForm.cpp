@@ -24,7 +24,7 @@ System::Void Square::MyForm::createButton_Click(System::Object^ sender, System::
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	for (int i = 0; i < SQR_SIZE; i++) {
 		for (int j = 0; j < SQR_SIZE; j++) {
-			sqr[i][j] = sqr[i][j] = clrs[std::rand() % clrs.size()];
+			sqr[i][j]= clrs[std::rand() % clrs.size()];
 		}
 	}
 	viewSquares->RowCount = SQR_SIZE;
@@ -255,6 +255,7 @@ void Square::MyForm::EnableColorButtons() {
 
 System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	ClearTable();
+	EnableColorButtons();
 	ClearSelectedButtons(Colors_AB_GroupBox);
 	EnableColorButtons();
 	return System::Void();
@@ -263,7 +264,6 @@ void Square::MyForm::ClearTable() {
 	viewSquares->Rows->Clear();
 	viewSquares->Columns->Clear();
 	nextButton->Enabled = false;
-	EnableColorButtons();
 }
 void Square::MyForm::ClearSelectedButtons(GroupBox^ groupBox) {
 	while (Colors_AB_GroupBox->Controls->Count > 0)
