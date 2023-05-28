@@ -1,4 +1,6 @@
 ﻿  MyForm.cpp
-C:\Users\lika9\OneDrive\Робочий стіл\Local progect\Square-Project\Square\MyForm.cpp(16,33): warning C4829: Возможно, неправильные параметры функции main. Рекомендуемый вариант - "int main(Platform::Array<Platform::String^>^ argv)"
-  MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
-  Square.vcxproj -> C:\Users\lika9\OneDrive\Робочий стіл\Local progect\Square-Project\x64\Debug\Square.exe
+C:\Users\sever\Desktop\study\Square-Project\Square\MyForm.cpp(16,33): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Square.vcxproj -> C:\Users\sever\Desktop\study\Square-Project\x64\Debug\Square.exe
