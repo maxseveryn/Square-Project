@@ -14,3 +14,7 @@ C:\Users\sever\Desktop\study\Square-Project\Square\x64\Debug\Square.vcxproj.Asse
 C:\Users\sever\Desktop\study\Square-Project\Square\x64\Debug\Square.vcxproj.SuggestedBindingRedirects.cache
 C:\Users\sever\Desktop\study\Square-Project\Square\x64\Debug\Square.MyForm.resources
 C:\Users\sever\Desktop\study\Square-Project\Square\x64\Debug\Square.vcxproj.GenerateResource.cache
+C:\Users\lika9\OneDrive\Робочий стіл\Local progect\Square-Project\Square\x64\Debug\Square.vcxproj.AssemblyReference.cache
+C:\Users\lika9\OneDrive\Робочий стіл\Local progect\Square-Project\Square\x64\Debug\Square.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\lika9\OneDrive\Робочий стіл\Local progect\Square-Project\Square\x64\Debug\Square.MyForm.resources
+C:\Users\lika9\OneDrive\Робочий стіл\Local progect\Square-Project\Square\x64\Debug\Square.vcxproj.GenerateResource.cache

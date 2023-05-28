@@ -260,6 +260,11 @@ System::Void Square::MyForm::clearButton_Click(System::Object^ sender, System::E
 	EnableColorButtons();
 	return System::Void();
 }
+System::Void Square::MyForm::N_Value_Help_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	MessageBox::Show("N-number of cells with a value greater than 1 for the current one to change color", "Note");
+	return System::Void();
+}
 void Square::MyForm::ClearTable() {
 	viewSquares->Rows->Clear();
 	viewSquares->Columns->Clear();
