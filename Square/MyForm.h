@@ -259,8 +259,8 @@ namespace Square {
 			// 
 			// buttonPink
 			// 
-			this->buttonPink->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
-				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->buttonPink->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->buttonPink->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->buttonPink->Location = System::Drawing::Point(42, 69);
 			this->buttonPink->Name = L"buttonPink";
